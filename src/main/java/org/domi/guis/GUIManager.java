@@ -45,17 +45,29 @@ public abstract class GUIManager {
      * @param x x좌표 (1부터 시작) (1~9)
      * @param y y좌표 (1부터 시작) (1~6)
      */
-    public void setupItems(int x, int y) {
+    public void setItems(int x, int y, ItemStack item) {
         int slot = (x - 1) + y * 9;
-        inv.setItem(0, null);
+        inv.setItem(slot, item);
+    }
+
+    public void setItems(int slot, ItemStack item) {
+        inv.setItem(slot, item);
     }
 
     public final ItemStack getItem(int x, int y) {
         return inv.getItem((x - 1) + y * 9);
     }
 
+    public final ItemStack getItem(int slot) {
+        return inv.getItem(slot);
+    }
+
     public Inventory getPlayerInventory(Player player) {
         return (Inventory) GUIData.get(player);
+    }
+
+    public int getSize() {
+        return inv.getSize();
     }
 
     public void openGUI(Player player) {
