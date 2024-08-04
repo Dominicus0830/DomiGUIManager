@@ -17,25 +17,26 @@ public abstract class GUIManager {
     /**
      * GUIManager 생성자
      */
-    public GUIManager(GUICreater guiInstance) {
-        Class<?> clazz = guiInstance.getClass();
-        if (clazz.isAnnotationPresent(DomiGUI.class)) {
-            DomiGUI guiInfo = clazz.getAnnotation(DomiGUI.class);
+    public GUIManager() {
+        if (this.getClass().isAnnotationPresent(DomiGUI.class)) {
+            DomiGUI guiInfo = this.getClass().getAnnotation(DomiGUI.class);
             inv = Bukkit.createInventory(null, guiInfo.line() * 9, guiInfo.title());
+        } else {
+            throw new IllegalStateException("DomiGUI annotation is missing");
         }
     }
 
     /**
      * GUIManager 생성자
      *
-     * @param title       GUI 타이틀 수정
-     * @param guiInstance GUI 인스턴스
+     * @param title GUI 타이틀 수정
      */
-    public GUIManager(String title, GUICreater guiInstance) {
-        Class<?> clazz = guiInstance.getClass();
-        if (clazz.isAnnotationPresent(DomiGUI.class)) {
-            DomiGUI guiInfo = clazz.getAnnotation(DomiGUI.class);
+    public GUIManager(String title) {
+        if (this.getClass().isAnnotationPresent(DomiGUI.class)) {
+            DomiGUI guiInfo = this.getClass().getAnnotation(DomiGUI.class);
             inv = Bukkit.createInventory(null, guiInfo.line() * 9, title);
+        } else {
+            throw new IllegalStateException("DomiGUI annotation is missing");
         }
     }
 
