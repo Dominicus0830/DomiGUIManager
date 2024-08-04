@@ -1,0 +1,4 @@
+name: DomiGUIManager
+version: '${version}'
+main: org.dominicus.DomiGUIManager
+api-version: '1.21'
